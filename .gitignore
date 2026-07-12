@@ -1,0 +1,35 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+
+# env
+.env
+.env.local
+.env*.local
+
+# vercel
+.vercel
+
+# reference artifacts (do not edit)
+/reference
+
+# large source images (compressed copy in public/images/)
+Profile picture Shikha.jpeg
+WhatsApp Image*
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
