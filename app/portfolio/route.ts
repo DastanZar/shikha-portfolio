@@ -76,6 +76,14 @@ html.dm footer a:hover{color:#FFFCF8!important}
 </script>
 `;
 
+const CLICK_GUARD = `
+<!-- CLICK GUARD (fixes invisible overlay blocking all clicks) -->
+<style>
+.ss-overlay{pointer-events:none!important}
+.ss-overlay.ss-show{pointer-events:auto!important}
+</style>
+`;
+
 const CLICK_FIX = `
 <!-- CLICK FALLBACK (fixes unresponsive buttons on Vercel) -->
 <script>
@@ -110,7 +118,7 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
-  html = html.replace("</body>", DARK_MODE + CLICK_FIX + "\n</body>");
+  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
     headers: { "Content-Type": "text/html; charset=utf-8" },
