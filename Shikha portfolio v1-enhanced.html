@@ -223,9 +223,9 @@ h1,h2,h3,.serif{font-family:'Cormorant Garamond',serif}
     breathOv.querySelector(".ss-close").addEventListener("click", closeBreath);
 
     /* ---- grounding overlay ---- */
-    var groundSteps = ["5 things you SEE", "4 you can TOUCH", "3 you HEAR", "2 you SMELL", "1 you TASTE"];
+    var groundSteps = ["Things you SEE", "Things you TOUCH", "Things you HEAR", "Things you SMELL", "Things you TASTE"];
     var stepHtml = groundSteps.map(function (s, i) {
-      return '<div class="ss-ground-step"><span>' + (5 - i) + '</span><span>' + s + '</span></div>';
+      return '<div class="ss-ground-step"><span>' + (5 - i) + '</span><span style="font-size:14px;font-weight:500;color:#2D2A26;line-height:1.4">' + s + '</span></div>';
     }).join("");
     var groundOv = el("div", "ss-overlay");
     groundOv.innerHTML =
