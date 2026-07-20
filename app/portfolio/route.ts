@@ -99,7 +99,7 @@ const LOGO_INJECT = `
     var img=document.createElement('img');
     img.src='/sunmukh-logo.jpeg';
     img.alt='Sunmukh - Shikha Soni, Ph.D.';
-    img.style.cssText='height:64px;width:auto;object-fit:contain;display:block';
+    img.style.cssText='height:128px;width:auto;object-fit:contain;display:block;margin-top:12px';
     brandLink.appendChild(img);
     return true;
   }
