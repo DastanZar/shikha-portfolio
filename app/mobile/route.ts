@@ -96,11 +96,18 @@ const LOGO_INJECT = `
     if(brandLink.querySelector('img'))return true;
     brandLink.innerHTML='';
     brandLink.style.gap='0';
+    var wrapper=document.createElement('div');
+    wrapper.style.cssText='display:flex;align-items:center;gap:0';
     var img=document.createElement('img');
     img.src='/sunmukh-logo.jpeg';
-    img.alt='Sunmukh - Shikha Soni, Ph.D.';
-    img.style.cssText='height:128px;width:auto;object-fit:contain;display:block;margin-top:12px';
-    brandLink.appendChild(img);
+    img.alt='Sunmukh';
+    img.style.cssText='height:128px;width:auto;object-fit:contain;display:block;margin-top:20px';
+    var textDiv=document.createElement('div');
+    textDiv.style.cssText='display:flex;flex-direction:column;justify-content:center;line-height:1.25;margin-top:20px';
+    textDiv.innerHTML='<span style="font-family:ui-serif,Georgia,serif;font-size:19px;color:#2D2A26">Shikha Soni, Ph.D.</span><span style="font-size:11px;letter-spacing:0.16em;color:#2D2A26">CLINICAL PSYCHOLOGIST</span>';
+    wrapper.appendChild(img);
+    wrapper.appendChild(textDiv);
+    brandLink.appendChild(wrapper);
     return true;
   }
   if(!swapLogo()){
