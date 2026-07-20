@@ -85,26 +85,22 @@ const CLICK_GUARD = `
 `;
 
 const LOGO_INJECT = `
-<!-- LOGO INJECT (replaces S-circle with Sunmukh logo after React renders) -->
+<!-- LOGO INJECT (replaces S-circle + name with rectangular Sunmukh logo) -->
 <script>
 (function(){
   function swapLogo(){
-    var all=document.querySelectorAll('nav div');
-    var el=null;
-    for(var i=0;i<all.length;i++){
-      if(all[i].textContent.trim()==='S'&&all[i].className.indexOf('rounded-full')>-1){el=all[i];break}
-    }
-    if(!el)return false;
-    if(el.querySelector('img'))return true;
-    el.style.width='56px';
-    el.style.height='56px';
-    el.style.flexShrink='0';
-    el.textContent='';
+    var nav=document.querySelector('nav');
+    if(!nav)return false;
+    var brandLink=nav.querySelector('a[href="#"]');
+    if(!brandLink)return false;
+    if(brandLink.querySelector('img'))return true;
+    brandLink.innerHTML='';
+    brandLink.style.gap='0';
     var img=document.createElement('img');
     img.src='/sunmukh-logo.jpeg';
-    img.alt='Sunmukh';
-    img.style.cssText='width:100%;height:100%;border-radius:50%;object-fit:cover';
-    el.appendChild(img);
+    img.alt='Sunmukh - Shikha Soni, Ph.D.';
+    img.style.cssText='height:44px;width:auto;object-fit:contain;display:block';
+    brandLink.appendChild(img);
     return true;
   }
   if(!swapLogo()){
