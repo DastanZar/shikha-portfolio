@@ -63,6 +63,9 @@ html.dm footer [style*="color:#FFFCF8"]{color:#FFFCF8!important}
 html.dm footer [style*="color:#A9BFAE"]{color:#8FA893!important}
 html.dm footer a{color:#8FA893!important}
 html.dm footer a:hover{color:#FFFCF8!important}
+html.dm nav img[alt="Sunmukh"]{filter:brightness(0) invert(1)}
+html.dm .ss-brand-name{color:#F0EDE8!important}
+html.dm .ss-brand-sub{color:#B0ACA8!important}
 </style>
 <script>
 (function(){
@@ -105,10 +108,10 @@ const LOGO_INJECT = `
     var img=document.createElement('img');
     img.src='/sunmukh-logo.png';
     img.alt='Sunmukh';
-    img.style.cssText='height:150px;width:auto;object-fit:contain;display:block';
+    img.style.cssText='height:172px;width:auto;object-fit:contain;display:block';
     var textDiv=document.createElement('div');
     textDiv.style.cssText='display:flex;flex-direction:column;justify-content:center;line-height:1.25';
-    textDiv.innerHTML='<span style="font-family:ui-serif,Georgia,serif;font-size:19px;color:#2D2A26">Shikha Soni, Ph.D.</span><span style="font-size:11px;letter-spacing:0.16em;color:#2D2A26">CLINICAL PSYCHOLOGIST</span>';
+    textDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:19px;color:#2D2A26">Shikha Soni, Ph.D.</span><span class="ss-brand-sub" style="font-size:11px;letter-spacing:0.16em;color:#2D2A26">CLINICAL PSYCHOLOGIST</span>';
     wrapper.appendChild(img);
     wrapper.appendChild(textDiv);
     brandLink.appendChild(wrapper);
