@@ -89,16 +89,16 @@ const LOGO_INJECT = `
 <script>
 (function(){
   function swapLogo(){
-    var el=document.querySelector('nav .rounded-full.bg-\\\\[\\\\#2D2A26\\\\]');
-    if(!el){el=document.querySelector('nav [class*="rounded-full"][class*="bg-[#2D2A26]"]')}
-    if(!el){
-      var all=document.querySelectorAll('nav div');
-      for(var i=0;i<all.length;i++){
-        if(all[i].textContent.trim()==='S'&&all[i].className.indexOf('rounded-full')>-1){el=all[i];break}
-      }
+    var all=document.querySelectorAll('nav div');
+    var el=null;
+    for(var i=0;i<all.length;i++){
+      if(all[i].textContent.trim()==='S'&&all[i].className.indexOf('rounded-full')>-1){el=all[i];break}
     }
     if(!el)return false;
     if(el.querySelector('img'))return true;
+    el.style.width='56px';
+    el.style.height='56px';
+    el.style.flexShrink='0';
     el.textContent='';
     var img=document.createElement('img');
     img.src='/sunmukh-logo.jpeg';

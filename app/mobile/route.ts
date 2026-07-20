@@ -84,6 +84,40 @@ const CLICK_GUARD = `
 </style>
 `;
 
+const LOGO_INJECT = `
+<!-- LOGO INJECT (replaces S-circle with Sunmukh logo after React renders) -->
+<script>
+(function(){
+  function swapLogo(){
+    var all=document.querySelectorAll('nav div');
+    var el=null;
+    for(var i=0;i<all.length;i++){
+      if(all[i].textContent.trim()==='S'&&all[i].className.indexOf('rounded-full')>-1){el=all[i];break}
+    }
+    if(!el)return false;
+    if(el.querySelector('img'))return true;
+    el.style.width='56px';
+    el.style.height='56px';
+    el.style.flexShrink='0';
+    el.textContent='';
+    var img=document.createElement('img');
+    img.src='/sunmukh-logo.jpeg';
+    img.alt='Sunmukh';
+    img.style.cssText='width:100%;height:100%;border-radius:50%;object-fit:cover';
+    el.appendChild(img);
+    return true;
+  }
+  if(!swapLogo()){
+    var tries=0;
+    var timer=setInterval(function(){
+      tries++;
+      if(swapLogo()||tries>50)clearInterval(timer);
+    },100);
+  }
+})();
+</script>
+`;
+
 const CLICK_FIX = `
 <!-- CLICK FALLBACK (fixes unresponsive buttons on Vercel) -->
 <script>
@@ -118,7 +152,7 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
-  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + CLICK_FIX + "\n</body>");
+  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
     headers: { "Content-Type": "text/html; charset=utf-8" },
