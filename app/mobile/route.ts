@@ -108,12 +108,8 @@ const LOGO_INJECT = `
     var img=document.createElement('img');
     img.src='/sunmukh-logo.png';
     img.alt='Sunmukh';
-    img.style.cssText='height:172px;width:auto;object-fit:contain;display:block';
-    var textDiv=document.createElement('div');
-    textDiv.style.cssText='display:flex;flex-direction:column;justify-content:center;line-height:1.25';
-    textDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:19px;color:#2D2A26">Shikha Soni, Ph.D.</span><span class="ss-brand-sub" style="font-size:11px;letter-spacing:0.16em;color:#2D2A26">CLINICAL PSYCHOLOGIST</span>';
+    img.style.cssText='height:172px;width:auto;object-fit:contain;display:block;margin-top:8px';
     wrapper.appendChild(img);
-    wrapper.appendChild(textDiv);
     brandLink.appendChild(wrapper);
     return true;
   }
@@ -122,6 +118,39 @@ const LOGO_INJECT = `
     var timer=setInterval(function(){
       tries++;
       if(swapLogo()||tries>50)clearInterval(timer);
+    },100);
+  }
+})();
+</script>
+`;
+
+const BRAND_HERO_INJECT = `
+<!-- BRAND HERO (injects name above Elevate in hero) -->
+<script>
+(function(){
+  function injectBrand(){
+    var elevateEl = document.querySelector('h1');
+    if(!elevateEl)return false;
+    var spans = elevateEl.querySelectorAll('span');
+    if(!spans.length)return false;
+    for(var i=0;i<spans.length;i++){
+      if(spans[i].textContent==='Elevate Your'){
+        if(spans[i].parentNode.querySelector('.ss-hero-brand'))return true;
+        var brandDiv=document.createElement('div');
+        brandDiv.className='ss-hero-brand';
+        brandDiv.style.cssText='margin-top:8px;line-height:1.3;text-align:center';
+        brandDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:22px;color:#2D2A26;display:block">Shikha Soni, Ph.D.</span><span class="ss-brand-sub" style="font-size:12px;letter-spacing:0.2em;color:#8A8580;display:block;margin-top:2px">CLINICAL PSYCHOLOGIST</span>';
+        spans[i].parentNode.insertBefore(brandDiv,spans[i]);
+        return true;
+      }
+    }
+    return false;
+  }
+  if(!injectBrand()){
+    var tries=0;
+    var timer=setInterval(function(){
+      tries++;
+      if(injectBrand()||tries>50)clearInterval(timer);
     },100);
   }
 })();
@@ -162,7 +191,7 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
-  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + CLICK_FIX + "\n</body>");
+  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + BRAND_HERO_INJECT + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
     headers: { "Content-Type": "text/html; charset=utf-8" },
