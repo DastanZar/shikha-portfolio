@@ -157,6 +157,74 @@ const BRAND_HERO_INJECT = `
 </script>
 `;
 
+const CONTENT_FIX = `
+<!-- CONTENT FIX (removes GS, fixes ResearchGate, testimonial, loss para, citation, Next slots, adds Book Online btn) -->
+<script>
+(function(){
+  function fix(){
+    // Remove Google Scholar button
+    document.querySelectorAll('a').forEach(function(a){
+      if(a.textContent.trim()==='Google Scholar'){ a.remove(); }
+    });
+    // ResearchGate to black
+    document.querySelectorAll('a').forEach(function(a){
+      if(a.textContent.includes('ResearchGate')){
+        a.className='px-4 py-2 rounded-full bg-[#2D2A26] text-white text-[12.5px]';
+      }
+    });
+    // Remove loss paragraph
+    document.querySelectorAll('p').forEach(function(p){
+      if(p.textContent.includes('Loss, transition and anxiety disrupt')){
+        p.remove();
+      }
+    });
+    // Remove placeholder citation
+    document.querySelectorAll('p').forEach(function(p){
+      if(p.textContent.includes('Placeholder citation')){
+        p.remove();
+      }
+    });
+    // Remove Next slots bubble
+    document.querySelectorAll('div').forEach(function(d){
+      if(d.textContent.includes('Next slots') && d.querySelector('div')){
+        var parent=d.parentElement;
+        if(parent&&parent.className.indexOf('absolute')>=0){
+          parent.remove();
+        }
+      }
+    });
+    // Add Book Online Session button between existing buttons
+    document.querySelectorAll('a').forEach(function(a){
+      if(a.textContent.trim()==='Free 10-min Discovery Call'){
+        var existingBtn=document.querySelector('a[href*="topmate"]');
+        if(existingBtn&&!document.querySelector('a.ss-online-btn')){
+          var btn=document.createElement('a');
+          btn.className='ss-online-btn inline-block px-6 py-3.5 rounded-full bg-[#2D2A26] text-white text-[14px] font-medium hover:bg-[#413D39] transition ml-2';
+          btn.textContent='Book Online Session \\u2192';
+          btn.href='https://topmate.io/dr_shikha_soni';
+          btn.target='_blank';
+          btn.rel='noreferrer';
+          if(existingBtn.parentNode)existingBtn.parentNode.insertBefore(btn,existingBtn);
+        }
+      }
+    });
+    // Change testimonial
+    document.querySelectorAll('*').forEach(function(el){
+      if(el.childNodes.length===1&&el.textContent.includes('She made me feel heard')){
+        el.textContent='\\u201cDr. Shikha creates a safe, non-judgmental space where I could truly open up. Her approach is deeply empathetic and evidence-based.\\u201d \\u2014 Client';
+      }
+    });
+    return true;
+  }
+  var tries=0;
+  var timer=setInterval(function(){
+    tries++;
+    if(fix()||tries>100)clearInterval(timer);
+  },200);
+})();
+</script>
+`;
+
 const CLICK_FIX = `
 <!-- CLICK FALLBACK (fixes unresponsive buttons on Vercel) -->
 <script>
@@ -191,7 +259,7 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
-  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + BRAND_HERO_INJECT + CLICK_FIX + "\n</body>");
+  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + BRAND_HERO_INJECT + CONTENT_FIX + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
     headers: { "Content-Type": "text/html; charset=utf-8" },
