@@ -139,7 +139,7 @@ const BRAND_HERO_INJECT = `
         var brandDiv=document.createElement('div');
         brandDiv.className='ss-hero-brand';
         brandDiv.style.cssText='margin-top:8px;line-height:1.3;text-align:center';
-        brandDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:22px;color:#2D2A26;display:block">Shikha Soni, Ph.D.</span><span class="ss-brand-sub" style="font-size:12px;letter-spacing:0.2em;color:#8A8580;display:block;margin-top:2px">CLINICAL PSYCHOLOGIST</span>';
+        brandDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:22px;color:#2D2A26;display:block">Dr Shikha Soni</span><span class="ss-brand-sub" style="font-size:12px;letter-spacing:0.2em;color:#8A8580;display:block;margin-top:2px">CLINICAL PSYCHOLOGIST</span>';
         spans[i].parentNode.insertBefore(brandDiv,spans[i]);
         return true;
       }
@@ -219,6 +219,31 @@ const CONTENT_FIX = `
       var t = spans[m].textContent;
       if(t.indexOf('She made me feel heard')>=0 && spans[m].children.length===0){
         spans[m].textContent='\u201cDr. Shikha creates a safe, non-judgmental space where I could truly open up. Her approach is deeply empathetic and evidence-based.\u201d \u2014 Client';
+      }
+    }
+
+    // Split expertise tags into Specialization and Concerns
+    if(!document.querySelector('.ss-exp-split')){
+      var allSpans = document.querySelectorAll('span');
+      var posTag = null;
+      for(var n=0;n<allSpans.length;n++){
+        if(allSpans[n].textContent.trim()==='Positive Psychology'){posTag=allSpans[n];break;}
+      }
+      if(posTag && posTag.parentNode){
+        var tagContainer = posTag.parentNode;
+        var tags = tagContainer.children;
+        if(tags.length >= 8){
+          var specLabel = document.createElement('div');
+          specLabel.className='ss-exp-split';
+          specLabel.style.cssText='width:100%;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8580;font-weight:600;padding:4px 0 2px';
+          specLabel.textContent='Specialization';
+          tagContainer.insertBefore(specLabel, tags[0]);
+          var concernsLabel = document.createElement('div');
+          concernsLabel.className='ss-exp-split';
+          concernsLabel.style.cssText='width:100%;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8580;font-weight:600;padding:8px 0 2px';
+          concernsLabel.textContent='Experience in dealing with concerns';
+          tagContainer.insertBefore(concernsLabel, tags[5]);
+        }
       }
     }
 
