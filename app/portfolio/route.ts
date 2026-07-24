@@ -259,7 +259,7 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
-  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + BRAND_HERO_INJECT + CONTENT_FIX + CLICK_FIX + "\n</body>");
+  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + BRAND_HERO_INJECT + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
     headers: { "Content-Type": "text/html; charset=utf-8" },
