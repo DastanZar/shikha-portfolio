@@ -124,33 +124,6 @@ const LOGO_INJECT = `
 </script>
 `;
 
-const BRAND_HERO_INJECT = `
-<!-- BRAND HERO (injects name above Elevate in hero) -->
-<script>
-(function(){
-  var inserted=false;
-  function injectBrand(){
-    var h1=document.querySelector('h1');
-    if(!h1)return;
-    if(h1.textContent.indexOf('Elevate')<0)return;
-    var parent=h1.parentNode;
-    if(!parent)return;
-    var existing=parent.querySelector('.ss-hero-brand');
-    if(existing){inserted=true;return;}
-    var brandDiv=document.createElement('div');
-    brandDiv.className='ss-hero-brand';
-    brandDiv.style.cssText='margin-bottom:4px;line-height:1.3';
-    brandDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:22px;color:#2D2A26;display:block">Dr Shikha Soni</span><span class="ss-brand-sub" style="font-size:12px;letter-spacing:0.2em;color:#8A8580;display:block;margin-top:2px">CLINICAL PSYCHOLOGIST</span>';
-    parent.insertBefore(brandDiv,h1);
-    inserted=true;
-  }
-  injectBrand();
-  var observer=new MutationObserver(function(){if(!inserted||!document.querySelector('.ss-hero-brand')){inserted=false;injectBrand();}});
-  observer.observe(document.body,{childList:true,subtree:true});
-})();
-</script>
-`;
-
 const CONTENT_FIX = `
 <!-- CONTENT FIX (targeted DOM edits after React renders) -->
 <script>
