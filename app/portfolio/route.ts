@@ -257,6 +257,42 @@ const CLICK_FIX = `
 </script>
 `;
 
+const MOVE_BRAND = `
+<!-- MOVE BRAND + RCI UNDER PHOTO (safe DOM injection, no JSX changes) -->
+<style>
+.ss-hero-brand:not(.ss-hero-brand-card){display:none!important}
+</style>
+<script>
+(function(){
+  function move(){
+    if(document.querySelector('.ss-hero-brand-card'))return true;
+    var bottom=document.querySelector('[class*="mt-"][class*="flex"][class*="items-end"][class*="justify-between"]');
+    if(!bottom)return false;
+    var card=bottom.parentNode;
+    if(!card)return false;
+    var brand=document.createElement('div');
+    brand.className='ss-hero-brand-card';
+    brand.style.cssText='margin:8px 0 6px;line-height:1.3';
+    brand.innerHTML='<span style="font-family:\\'Uber Move\\',sans-serif;font-size:16px;color:#2D2A26;display:block;font-weight:700">Dr Shikha Soni</span><span style="font-size:10px;letter-spacing:0.18em;color:#8A8580;display:block;margin-top:1px">CLINICAL PSYCHOLOGIST</span>';
+    var rci=document.createElement('div');
+    rci.className='ss-rci-banner-card';
+    rci.style.cssText='display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:9999px;background:#E8EDE8;border:1px solid #D9E2DA;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#556B59;font-weight:600;width:fit-content;margin-bottom:6px';
+    rci.innerHTML='<span style="width:5px;height:5px;border-radius:50%;background:#6B7F6E;display:inline-block"></span>RCI Licensed \\u2022 Bengaluru & Online';
+    card.insertBefore(rci,bottom);
+    card.insertBefore(brand,rci);
+    return true;
+  }
+  if(!move()){
+    var tries=0;
+    var timer=setInterval(function(){
+      tries++;
+      if(move()||tries>50)clearInterval(timer);
+    },100);
+  }
+})();
+</script>
+`;
+
 export async function GET() {
   const filePath = path.join(
     process.cwd(),
@@ -264,7 +300,7 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
-  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + CONTENT_FIX + CLICK_FIX + "\n</body>");
+  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + CONTENT_FIX + MOVE_BRAND + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
     headers: { "Content-Type": "text/html; charset=utf-8" },
