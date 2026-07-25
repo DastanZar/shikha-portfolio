@@ -129,22 +129,16 @@ const BRAND_HERO_INJECT = `
 <script>
 (function(){
   function injectBrand(){
-    var elevateEl = document.querySelector('h1');
-    if(!elevateEl)return false;
-    var spans = elevateEl.querySelectorAll('span');
-    if(!spans.length)return false;
-    for(var i=0;i<spans.length;i++){
-      if(spans[i].textContent==='Elevate Your'){
-        if(spans[i].parentNode.querySelector('.ss-hero-brand'))return true;
-        var brandDiv=document.createElement('div');
-        brandDiv.className='ss-hero-brand';
-        brandDiv.style.cssText='margin-top:8px;line-height:1.3;text-align:center';
-        brandDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:22px;color:#2D2A26;display:block">Dr Shikha Soni</span><span class="ss-brand-sub" style="font-size:12px;letter-spacing:0.2em;color:#8A8580;display:block;margin-top:2px">CLINICAL PSYCHOLOGIST</span>';
-        spans[i].parentNode.insertBefore(brandDiv,spans[i]);
-        return true;
-      }
-    }
-    return false;
+    var h1=document.querySelector('h1');
+    if(!h1)return false;
+    if(h1.textContent.indexOf('Elevate')<0)return false;
+    if(document.querySelector('.ss-hero-brand'))return true;
+    var brandDiv=document.createElement('div');
+    brandDiv.className='ss-hero-brand';
+    brandDiv.style.cssText='margin-bottom:4px;line-height:1.3';
+    brandDiv.innerHTML='<span class="ss-brand-name" style="font-family:ui-serif,Georgia,serif;font-size:22px;color:#2D2A26;display:block">Dr Shikha Soni</span><span class="ss-brand-sub" style="font-size:12px;letter-spacing:0.2em;color:#8A8580;display:block;margin-top:2px">CLINICAL PSYCHOLOGIST</span>';
+    h1.parentNode.insertBefore(brandDiv,h1);
+    return true;
   }
   if(!injectBrand()){
     var tries=0;
@@ -295,7 +289,7 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
-  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + BRAND_HERO_INJECT + CONTENT_FIX + CLICK_FIX + "\n</body>");
+  html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + CONTENT_FIX + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
     headers: { "Content-Type": "text/html; charset=utf-8" },
