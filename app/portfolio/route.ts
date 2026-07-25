@@ -7,6 +7,8 @@ export const dynamic = "force-dynamic";
 const DARK_MODE = `
 <!-- DARK MODE (injected, HTML file untouched) -->
 <style>
+@font-face{font-family:"Uber Move";src:url("/fonts/UberMove-Medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Uber Move";src:url("/fonts/UberMove-Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
 #dm-toggle{position:fixed;bottom:24px;right:24px;z-index:9999;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 20px rgba(0,0,0,.15);transition:background .3s,transform .2s;font-size:20px;line-height:1}
 #dm-toggle:hover{transform:scale(1.1)}
 #dm-toggle.dm-light{background:#2D2A26;color:#FFFCF8}
