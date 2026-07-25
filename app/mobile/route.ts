@@ -94,8 +94,8 @@ const LOGO_INJECT = `
   function swapLogo(){
     var nav=document.querySelector('nav');
     if(!nav)return false;
-    nav.style.paddingTop='36px';
-    nav.style.paddingBottom='16px';
+    nav.style.paddingTop='24px';
+    nav.style.paddingBottom='12px';
     var brandLink=nav.querySelector('a[href="#"]');
     if(!brandLink)return false;
     if(brandLink.querySelector('img'))return true;
@@ -108,7 +108,7 @@ const LOGO_INJECT = `
     var img=document.createElement('img');
     img.src='/sunmukh-logo.png';
     img.alt='Sunmukh';
-    img.style.cssText='height:172px;width:auto;object-fit:contain;display:block;margin-top:8px';
+    img.style.cssText='height:100px;width:auto;object-fit:contain;display:block;margin-top:8px';
     wrapper.appendChild(img);
     brandLink.appendChild(wrapper);
     return true;
