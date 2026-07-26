@@ -217,15 +217,6 @@ const CONTENT_FIX = `
       }
     }
 
-    // Replace tagline text (walk text nodes to avoid breaking pill spans)
-    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
-    var node;
-    while (node = walker.nextNode()) {
-      if (node.nodeValue.indexOf('immediate relief and long-term resilience') >= 0) {
-        node.nodeValue = node.nodeValue.replace('immediate relief and long-term resilience', 'relief and resilience');
-      }
-    }
-
     // Remove placeholder texts
     var placeholders = ['Owner: replace link via prop', 'External link', '(placeholder)', 'Opens topmate.io'];
     var allEls = document.querySelectorAll('div, span, p');
@@ -320,9 +311,6 @@ export async function GET() {
     "Shikha portfolio v1-mobile.html"
   );
   let html = fs.readFileSync(filePath, "utf-8");
-
-  // Server-side text replacement (runs on every request, bypasses all caches)
-  html = html.replace(/immediate relief and long-term resilience/g, "relief and resilience");
 
   html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + CONTENT_FIX + MOVE_BRAND + CLICK_FIX + "\n</body>");
 
