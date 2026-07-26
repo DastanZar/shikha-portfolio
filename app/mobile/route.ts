@@ -217,11 +217,12 @@ const CONTENT_FIX = `
       }
     }
 
-    // Replace tagline text
-    var taglineEls = document.querySelectorAll('span, p, div');
-    for (var k = 0; k < taglineEls.length; k++) {
-      if (taglineEls[k].children.length === 0 && taglineEls[k].textContent.indexOf('immediate relief') >= 0) {
-        taglineEls[k].textContent = taglineEls[k].textContent.replace('immediate relief and long-term resilience', 'relief and resilience');
+    // Replace tagline text (walk text nodes to avoid breaking pill spans)
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null, false);
+    var node;
+    while (node = walker.nextNode()) {
+      if (node.nodeValue.indexOf('immediate relief and long-term resilience') >= 0) {
+        node.nodeValue = node.nodeValue.replace('immediate relief and long-term resilience', 'relief and resilience');
       }
     }
 
