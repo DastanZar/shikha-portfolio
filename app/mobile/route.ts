@@ -219,7 +219,7 @@ const CONTENT_FIX = `
     }
 
     // Remove placeholder texts
-    var placeholders = ['Owner: replace link via prop', 'External link', '(placeholder)', 'Opens topmate.io'];
+    var placeholders = ['Owner: replace link via prop', 'External link', '(placeholder)', 'Opens topmate.io', 'Replace with scans/links — editable', 'Placeholder citation — replace with DOI / link'];
     var allEls = document.querySelectorAll('div, span, p');
     for (var i = 0; i < allEls.length; i++) {
       var txt = allEls[i].textContent.trim();
