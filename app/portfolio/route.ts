@@ -110,7 +110,7 @@ const LOGO_INJECT = `
     var img=document.createElement('img');
     img.src='/sunmukh-logo.png';
     img.alt='Sunmukh';
-    img.style.cssText='height:172px;width:auto;object-fit:contain;display:block;margin-top:8px';
+    img.style.cssText='height:200px;width:auto;object-fit:contain;display:block;margin-top:8px';
     wrapper.appendChild(img);
     brandLink.appendChild(wrapper);
     return true;
@@ -128,6 +128,10 @@ const LOGO_INJECT = `
 
 const CONTENT_FIX = `
 <!-- CONTENT FIX (targeted DOM edits after React renders) -->
+<style>
+/* Ensure credential/reco icons render with a symbol-capable font */
+#credentials .rounded-full[class*="bg-[#E8EDE8]"]{font-family:'Segoe UI Symbol','Apple Color Emoji','Noto Color Emoji',sans-serif!important;font-size:18px}
+</style>
 <script>
 (function(){
   function fix(){
