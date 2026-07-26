@@ -220,6 +220,14 @@ const CONTENT_FIX = `
       }
     }
 
+    // Replace tagline text
+    var taglineEls = document.querySelectorAll('span, p, div');
+    for (var k = 0; k < taglineEls.length; k++) {
+      if (taglineEls[k].children.length === 0 && taglineEls[k].textContent.indexOf('immediate relief') >= 0) {
+        taglineEls[k].textContent = taglineEls[k].textContent.replace('immediate relief and long-term resilience', 'relief and resilience');
+      }
+    }
+
     // Remove placeholder texts
     var placeholders = ['Owner: replace link via prop', 'External link', '(placeholder)', 'Opens topmate.io'];
     var allEls = document.querySelectorAll('div, span, p');
