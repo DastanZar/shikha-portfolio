@@ -326,6 +326,9 @@ export async function GET() {
   );
   let html = fs.readFileSync(filePath, "utf-8");
 
+  // Server-side text replacement (runs on every request, bypasses all caches)
+  html = html.replace(/immediate relief and long-term resilience/g, "relief and resilience");
+
   html = html.replace("</body>", DARK_MODE + CLICK_GUARD + LOGO_INJECT + CONTENT_FIX + MOVE_BRAND + CLICK_FIX + "\n</body>");
 
   return new NextResponse(html, {
