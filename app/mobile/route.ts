@@ -258,6 +258,7 @@ const CLICK_FIX = `
 const MOVE_BRAND = `
 <style>
 .ss-hero-brand:not(.ss-hero-brand-card){display:none!important}
+div:not(.ss-rci-banner-card):not(.ss-hero-brand-card)[class*="rounded-full"][class*="bg-[#E8EDE8]"]{display:none!important}
 </style>
 <script>
 (function(){
@@ -265,21 +266,21 @@ const MOVE_BRAND = `
     if(document.querySelector('.ss-hero-brand-card'))return true;
     var card=document.querySelector('[class*="aspect-[4/4.6]"]')||document.querySelector('[class*="aspect"][class*="rounded"][class*="overflow"]');
     if(!card)return false;
-    var img=document.querySelector('img[alt*="Shikha Soni"]')||card.querySelector('img');
-    if(!img)return false;
     var parent=card.parentNode;
     if(!parent)return false;
-    var brand=document.createElement('div');
-    brand.className='ss-hero-brand-card';
-    brand.style.cssText='margin:0;padding:6px 2px 2px;line-height:1.3;position:relative;z-index:2';
-    brand.innerHTML='<span style="font-family:\\'Uber Move\\',sans-serif;font-size:16px;font-weight:700;color:#2D2A26;display:block;line-height:1.2">Dr Shikha Soni</span><span style="font-size:9px;letter-spacing:.18em;color:#8A8580;display:block;margin-top:1px;line-height:1.2">CLINICAL PSYCHOLOGIST</span>';
+    var wrap=document.createElement('div');
+    wrap.className='ss-hero-brand-card';
+    wrap.style.cssText='margin:0;padding:5px 2px 2px;line-height:1.35;position:relative;z-index:2';
     var rci=document.createElement('div');
     rci.className='ss-rci-banner-card';
-    rci.style.cssText='display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:9999px;background:#E8EDE8;border:1px solid #D9E2DA;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#556B59;font-weight:600;width:fit-content;margin:3px 0 0';
+    rci.style.cssText='display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:9999px;background:#E8EDE8;border:1px solid #D9E2DA;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#556B59;font-weight:600;width:fit-content;margin-bottom:3px';
     rci.innerHTML='<span style="width:4px;height:4px;border-radius:50%;background:#6B7F6E;display:inline-block"></span>RCI Licensed \u2022 Bengaluru & Online';
+    var brand=document.createElement('div');
+    brand.innerHTML='<span style="font-family:\\'Uber Move\\',sans-serif;font-size:15px;font-weight:700;color:#2D2A26;display:block;line-height:1.2">Dr Shikha Soni</span><span style="font-size:8px;letter-spacing:.2em;color:#8A8580;display:block;margin-top:1px;line-height:1.2">CLINICAL PSYCHOLOGIST</span>';
+    wrap.appendChild(rci);
+    wrap.appendChild(brand);
     var next=card.nextSibling;
-    if(next)parent.insertBefore(rci,next);else parent.appendChild(rci);
-    if(next)parent.insertBefore(brand,next);else parent.appendChild(brand);
+    if(next)parent.insertBefore(wrap,next);else parent.appendChild(wrap);
     return true;
   }
   if(!move()){
