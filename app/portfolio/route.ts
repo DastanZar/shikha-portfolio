@@ -17,8 +17,8 @@ html.dm{color-scheme:dark}
 html.dm body{background:#1A1917!important;color:#F0EDE8!important}
 html.dm ::selection{background:#2A332C;color:#F0EDE8}
 html.dm ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15)}
-html.dm nav{background:rgba(26,25,23,.85)!important;border-color:#333130!important}
-html.dm nav a:not(.ss-fab){color:#B0ACA8!important}
+html.dm nav{background:rgba(26,25,23,.55)!important;border-color:#333130!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+html.dm nav a:not(.ss-fab){color:#D0CCC8!important}
 html.dm nav a:hover{color:#F0EDE8!important}
 html.dm [style*="background:#FFFCF8"],html.dm [style*="background: #FFFCF8"]{background:#1A1917!important}
 html.dm [style*="background:#F5F1EB"],html.dm [style*="background: #F5F1EB"]{background:#242320!important}
@@ -26,8 +26,8 @@ html.dm [style*="background:#E8EDE8"],html.dm [style*="background: #E8EDE8"]{bac
 html.dm [style*="background:#F2DDD5"],html.dm [style*="background: #F2DDD5"]{background:#3A2A22!important}
 html.dm [style*="background:white"],html.dm [style*="background: white"]{background:#2A2926!important}
 html.dm [style*="color:#2D2A26"],html.dm [style*="color: #2D2A26"]{color:#F0EDE8!important}
-html.dm [style*="color:#5A5652"],html.dm [style*="color: #5A5652"]{color:#B0ACA8!important}
-html.dm [style*="color:#6B7F6E"],html.dm [style*="color: #6B7F6E"]{color:#8FA893!important}
+html.dm [style*="color:#5A5652"],html.dm [style*="color: #5A5652"]{color:#D0CCC8!important}
+html.dm [style*="color:#6B7F6E"],html.dm [style*="color: #6B7F6E"]{color:#A8C5AC!important}
 html.dm [style*="color:#C17C60"],html.dm [style*="color: #C17C60"]{color:#D4956E!important}
 html.dm [style*="border-color:#EDE8E1"],html.dm [style*="border-color: #EDE8E1"]{border-color:#333130!important}
 html.dm [style*="border-color:#D9E2DA"],html.dm [style*="border-color: #D9E2DA"]{border-color:#3A4A3C!important}
@@ -56,12 +56,12 @@ html.dm [style*="bg-[#F2DDD5}/"]{background:rgba(58,42,34,.5)!important}
 html.dm .ss-card [style*="color:#FFFCF8"]{color:#FFFCF8!important}
 html.dm .ss-card [style*="background:#FFFCF8"]{background:#FFFCF8!important}
 html.dm footer [style*="color:#FFFCF8"]{color:#FFFCF8!important}
-html.dm footer [style*="color:#A9BFAE"]{color:#8FA893!important}
-html.dm footer a{color:#8FA893!important}
+html.dm footer [style*="color:#A9BFAE"]{color:#A8C5AC!important}
+html.dm footer a{color:#A8C5AC!important}
 html.dm footer a:hover{color:#FFFCF8!important}
-html.dm nav img[alt="Sunmukh"]{filter:brightness(0) invert(1)}
+html.dm nav img[alt="Sunmukh"]{filter:none}
 html.dm .ss-brand-name{color:#F0EDE8!important}
-html.dm .ss-brand-sub{color:#B0ACA8!important}
+html.dm .ss-brand-sub{color:#D0CCC8!important}
 </style>
 <script>
 (function(){
