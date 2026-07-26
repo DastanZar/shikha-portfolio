@@ -212,7 +212,19 @@ const CONTENT_FIX = `
           concernsLabel.className='ss-exp-split';
           concernsLabel.style.cssText='width:100%;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8580;font-weight:600;padding:8px 0 2px';
           concernsLabel.textContent='Experience in dealing with concerns';
-          tagContainer.insertBefore(concernsLabel, tags[5]);
+           tagContainer.insertBefore(concernsLabel, tags[5]);
+        }
+      }
+    }
+
+    // Remove placeholder texts
+    var placeholders = ['Owner: replace link via prop', 'External link', '(placeholder)', 'Opens topmate.io'];
+    var allEls = document.querySelectorAll('div, span, p');
+    for (var i = 0; i < allEls.length; i++) {
+      var txt = allEls[i].textContent.trim();
+      for (var j = 0; j < placeholders.length; j++) {
+        if (txt.indexOf(placeholders[j]) === 0 && allEls[i].children.length === 0) {
+          allEls[i].style.display = 'none';
         }
       }
     }
