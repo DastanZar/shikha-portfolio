@@ -15,7 +15,8 @@ html.dm{color-scheme:dark}
 html.dm body{background:#1A1917!important;color:#F0EDE8!important}
 html.dm ::selection{background:#2A332C;color:#F0EDE8}
 html.dm ::-webkit-scrollbar-thumb{background:rgba(255,255,255,.15)}
-html.dm nav{background:rgba(26,25,23,.55)!important;border-color:#333130!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+html.dm nav{background:transparent!important;border-color:transparent!important}
+html.dm nav:not(.bg-transparent){background:rgba(26,25,23,.3)!important;border-color:rgba(255,255,255,.08)!important;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
 html.dm nav a:not(.ss-fab){color:#D0CCC8!important}
 html.dm nav a:hover{color:#F0EDE8!important}
 html.dm [style*="background:#FFFCF8"],html.dm [style*="background: #FFFCF8"]{background:#1A1917!important}
