@@ -7,6 +7,8 @@ export const dynamic = "force-dynamic";
 const DARK_MODE = `
 <!-- DARK MODE (injected, HTML file untouched) -->
 <style>
+@font-face{font-family:"Uber Move";src:url("/fonts/UberMove-Medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Uber Move";src:url("/fonts/UberMove-Bold.otf") format("opentype");font-weight:700;font-style:normal;font-display:swap}
 #dm-toggle{position:fixed;bottom:24px;right:24px;z-index:9999;width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;display:grid;place-items:center;box-shadow:0 4px 20px rgba(0,0,0,.15);transition:background .3s,transform .2s;font-size:20px;line-height:1}
 #dm-toggle:hover{transform:scale(1.1)}
 #dm-toggle.dm-light{background:#2D2A26;color:#FFFCF8}
@@ -44,11 +46,6 @@ html.dm [class*="bg-[#F5F1EB]"]{background:#242320!important}
 html.dm [class*="bg-[#E8EDE8]"]{background:#2A332C!important}
 html.dm [class*="bg-[#F2DDD5]"]{background:#3A2A22!important}
 html.dm [class*="text-[#2D2A26]"]{color:#F0EDE8!important}
-html.dm [style*="color:#5A5652"],html.dm [style*="color: #5A5652"]{color:#D0CCC8!important}
-html.dm [style*="color:#6B7F6E"],html.dm [style*="color: #6B7F6E"]{color:#A8C5AC!important}
-html.dm [style*="color:#C17C60"],html.dm [style*="color: #C17C60"]{color:#D4956E!important}
-html.dm [style*="border-color:#EDE8E1"],html.dm [style*="border-color: #EDE8E1"]{border-color:#333130!important}
-html.dm [style*="border-color:#D9E2DA"],html.dm [style*="border-color: #D9E2DA"]{border-color:#3A4A3C!important}
 html.dm [style*="border-white"],html.dm [style*="border: white"]{border-color:rgba(255,255,255,.1)!important}
 html.dm [class*="hover\\:text-[#2D2A26]"]:hover{color:#F0EDE8!important}
 html.dm [style*="hover:bg-[#F5F1EB]"]{background:#242320!important}
