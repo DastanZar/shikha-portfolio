@@ -276,7 +276,7 @@ div:not(.ss-rci-banner-card):not(.ss-hero-brand-card)[class*="rounded-full"][cla
     rci.style.cssText='display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:9999px;background:#E8EDE8;border:1px solid #D9E2DA;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:#556B59;font-weight:600;width:fit-content;margin-bottom:3px';
     rci.innerHTML='<span style="width:4px;height:4px;border-radius:50%;background:#6B7F6E;display:inline-block"></span>RCI Licensed \u2022 Bengaluru & Online';
     var brand=document.createElement('div');
-    brand.innerHTML='<span style="font-family:\\'Uber Move\\',sans-serif;font-size:18px;font-weight:700;color:#2D2A26;display:block;line-height:1.2">Dr Shikha Soni</span>';
+    brand.innerHTML='<span style="font-family:\\'Uber Move\\',sans-serif;font-size:22px;font-weight:700;color:#2D2A26;display:block;line-height:1.2">Dr Shikha Soni</span>';
     wrap.appendChild(rci);
     wrap.appendChild(brand);
     var next=card.nextSibling;
