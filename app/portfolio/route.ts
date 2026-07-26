@@ -258,36 +258,39 @@ const CLICK_FIX = `
 `;
 
 const MOVE_BRAND = `
-<!-- MOVE BRAND + RCI UNDER PHOTO (safe DOM injection, no JSX changes) -->
 <style>
+/* Hide original brand hero from left column */
 .ss-hero-brand:not(.ss-hero-brand-card){display:none!important}
 </style>
 <script>
 (function(){
   function move(){
     if(document.querySelector('.ss-hero-brand-card'))return true;
-    var bottom=document.querySelector('[class*="mt-"][class*="flex"][class*="items-end"][class*="justify-between"]');
-    if(!bottom)return false;
-    var card=bottom.parentNode;
+    // Find the photo card via aspect-ratio (known class from JSX: aspect-[4/4.6])
+    var card=document.querySelector('[class*="aspect-[4/4.6]"]');
     if(!card)return false;
+    // Or find via the profile image we set
+    var img=document.querySelector('img[alt*="Shikha Soni"]');
+    if(!img&&card)img=card.querySelector('img');
+    if(!img)return false;
+    // Insert into the parent (right column) AFTER the photo card
+    var parent=card.parentNode;
+    if(!parent)return false;
     var brand=document.createElement('div');
     brand.className='ss-hero-brand-card';
-    brand.style.cssText='margin:8px 0 6px;line-height:1.3';
-    brand.innerHTML='<span style="font-family:\\'Uber Move\\',sans-serif;font-size:16px;color:#2D2A26;display:block;font-weight:700">Dr Shikha Soni</span><span style="font-size:10px;letter-spacing:0.18em;color:#8A8580;display:block;margin-top:1px">CLINICAL PSYCHOLOGIST</span>';
+    brand.style.cssText='margin:0;padding:6px 2px 2px;line-height:1.3;position:relative;z-index:2';
+    brand.innerHTML='<span style="font-family:\\'Uber Move\\',sans-serif;font-size:16px;font-weight:700;color:#2D2A26;display:block;line-height:1.2">Dr Shikha Soni</span><span style="font-size:9px;letter-spacing:.18em;color:#8A8580;display:block;margin-top:1px;line-height:1.2">CLINICAL PSYCHOLOGIST</span>';
     var rci=document.createElement('div');
     rci.className='ss-rci-banner-card';
-    rci.style.cssText='display:inline-flex;align-items:center;gap:5px;padding:3px 9px;border-radius:9999px;background:#E8EDE8;border:1px solid #D9E2DA;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#556B59;font-weight:600;width:fit-content;margin-bottom:6px';
-    rci.innerHTML='<span style="width:5px;height:5px;border-radius:50%;background:#6B7F6E;display:inline-block"></span>RCI Licensed \\u2022 Bengaluru & Online';
-    card.insertBefore(rci,bottom);
-    card.insertBefore(brand,rci);
+    rci.style.cssText='display:inline-flex;align-items:center;gap:4px;padding:2px 7px;border-radius:9999px;background:#E8EDE8;border:1px solid #D9E2DA;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#556B59;font-weight:600;width:fit-content;margin:3px 0 0';
+    rci.innerHTML='<span style="width:4px;height:4px;border-radius:50%;background:#6B7F6E;display:inline-block"></span>RCI Licensed \u2022 Bengaluru & Online';
+    var next=card.nextSibling;
+    if(next)parent.insertBefore(rci,next);else parent.appendChild(rci);
+    if(next)parent.insertBefore(brand,next);else parent.appendChild(brand);
     return true;
   }
   if(!move()){
-    var tries=0;
-    var timer=setInterval(function(){
-      tries++;
-      if(move()||tries>50)clearInterval(timer);
-    },100);
+    var tries=0,timer=setInterval(function(){tries++;if(move()||tries>60)clearInterval(timer)},150);
   }
 })();
 </script>
